@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha">
+
+  <title> Random Quote For Graphic Designers </title>
+  <script>
+    const QUOTEBANK = [
+    {
+      quote:"Good design is good business.",
+      author: "Thomas Watson"
+    },
+    {
+      quote:"Everything is designed. Few things are designed well.",
+      author: "Brian Reed"
+    },
+    {
+      quote:"Get rid of everything that is not essential to making a point.",
+      author: "Christoph Niemann"
+    }
+   ]
+    window.onload = init;
+    function init () {
+      generateQuote()
+    }
+
+    function generateQuote() {
+      let quoteSize = QUOTEBANK.length;
+      let randomIndex = Math.floor(Math.random() * quoteSize);
+      let randomQuoteData = QUOTEBANK[randomIndex];
+
+      let twitterLink = "https://twitter.com/intent/tweet?hashtags=quotes&amp;related=freecodecamp&amp;text=%22An%20unexamined%20life%20is%20not%20worth%20living.%22%20Socrates"
+
+      // Add The Quote
+      let quoteInApiFormat = randomQuoteData.quote.replace(/ /g,"%20");
+      twitterLink += quoteInApiFormat
+
+      // Add The author
+      let authorInApiFormat = randomQuoteData.author.replace(/ /g,"%20");
+      twitterLink += authorInApiFormat
+
+      document.getElementById("tweet-quote").href = twitterLink;
+      document.getElementById("text").innerText = randomQuoteData.quote;
+      document.getElementById("author").innerText = randomQuoteData.author;
+    }
+  </script>
+</head>
+
+
+<body>
+  <div class="container">
+    <div class="row py-5" >
+      <div class="col-6 mx-auto">
+      <wrapper id="quote-box">
+        <div class="card text-center">
+          <div class="card-body">
+            <h5 class="card-title">
+              <div id="text"> </div>
+            </h5>
+            <p class="card-text">
+              <div id="author"> </div>
+            </p>
+            <div class="d-grid gap-2">
+          <button id="new-quote" onClick="generateQuote();" class="btn btn-success">New Quote </button>
+          <a href="#" id="tweet-quote" target="_blank" class="btn btn-primary btn-block"> Tweet Quote </a>
+          </div>
+        </div>
+      </div>
+    </wrapper>
+  </div>
+</div>
+
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+<script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+
+
+
+</html>
